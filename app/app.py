@@ -1,5 +1,8 @@
 from app import logger
 from app.globalvars import input_folder, input_sheet
+from config import Config
+
+
 
 
 logger.info("Specified input folder is {}".format(input_folder))

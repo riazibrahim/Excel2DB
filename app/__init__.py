@@ -3,6 +3,7 @@ import os
 import logging
 from config import Config
 import sys
+from sqlalchemy import create_engine
 
 # Configuring argument options
 parser = argparse.ArgumentParser(allow_abbrev=False,
@@ -51,6 +52,13 @@ logger.addHandler(file_handler)
 logger.addHandler(console_handler)
 
 logger.debug('Excel2Report app has started')
+
+
+# SQL configuration
+
+# create engine
+dbi_uri = Config.SQLALCHEMY_DATABASE_URI
+engine = create_engine(dbi_uri, echo=False)
 
 
 # Signal handler To exit on Ctrl+C

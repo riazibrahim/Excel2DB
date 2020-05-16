@@ -5,8 +5,11 @@ import logging
 basedir = os.getcwd()
 
 class Config:
+    #SQL Alchemy configurations
     SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI') or 'sqlite:///'+os.path.join(basedir, 'reports.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    #Logging configurations
     FILE_LOGGING_LEVEL = logging.DEBUG
     CONSOLE_LOGGING_LEVEL = logging.INFO
     LOG_FILENAME = 'excel2db.log'
