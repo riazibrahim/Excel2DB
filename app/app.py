@@ -1,11 +1,7 @@
 from app import logger, engine
-from app.globalvars import input_folder, input_sheet
-from config import Config
 from app.helpers import import_excel_to_df, update_table_schema, export_df_to_db
 from app.globalvars import table_schema_dict
 from app.models import create_table
-from sqlalchemy import Column, String
-import pandas as pd
 
 # Reading excel using pandas
 logger.info('Reading excel using pandas')
