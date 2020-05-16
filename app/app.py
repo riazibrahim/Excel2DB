@@ -3,6 +3,7 @@ from app.helpers import import_excel_to_df, update_table_schema, export_df_to_db
 from app.globalvars import table_schema_dict
 from app.models import create_table
 
+# TODO: Handle promotion step and application column difference
 # Reading excel using pandas
 logger.info('Reading excel using pandas')
 file = '/home/soze/coding/26-reportdb/inputs/test2.xlsx'
