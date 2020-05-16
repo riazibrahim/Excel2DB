@@ -3,9 +3,14 @@ from app.globalvars import table_schema_dict
 import pandas as pd
 import sys
 from app.globalvars import input_sheet
+from sqlalchemy import Column, String
 
 
-def create_table_schema():
+def update_table_schema(excel_df, zone_name):
+    logger.info('Updating table schema dictionary')
+    table_schema_dict.update({'__tablename__': zone_name})
+    for cols in excel_df.columns:
+        table_schema_dict.update({cols: Column(String)})
     return table_schema_dict
 
 
@@ -18,7 +23,7 @@ def import_excel_to_df(filename):
         logger.debug('Dropping all empty rows from database')
         df = df.dropna()
         logger.debug('Setting header row as first non empty row')
-        header_row=0
+        header_row = 0
         df.columns = df.iloc[header_row]
     except Exception as ex:
         logger.warning('Couldn\'t read file {}\n Error is : {}'.format(filename, ex))

@@ -13,5 +13,4 @@ input_sheet = args.input_sheet
 table_schema_dict = {
         '__tablename__': 'sample_table',
         'id': Column(Integer, primary_key=True),
-        'second_column': Column(String)
     }
