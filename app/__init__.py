@@ -4,24 +4,24 @@ import logging
 from config import Config
 import sys
 
-
 # Configuring argument options
-parser = argparse.ArgumentParser(allow_abbrev=False, description='A tool for exporting an excel to an sqlite database by dynamically creating table')
-#TODO: Give default folder as "inputs"
+parser = argparse.ArgumentParser(allow_abbrev=False,
+                                 description='A tool for exporting an excel to an sqlite database by dynamically creating table')
+# TODO: Give default folder as "inputs"
 parser.add_argument('-f', '--folder',
                     dest='input_folder',
                     type=str,
                     help='point to the folder containing the excel files',
-                    required=False)
+                    required=True)
 
+# TODO: Default Sheet as sheet 1
 parser.add_argument('-s', '--sheet',
                     dest='input_sheet',
                     type=str,
                     help='Sheet name in Excel to be coverted to SQL tables',
-                    required=False)
+                    required=True)
 
 args = parser.parse_args()
-
 
 # Create directories
 if not os.path.exists('logs'):

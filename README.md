@@ -1,14 +1,16 @@
 # Excel To Database
 
-A tool for reading excel sheet and dynamically creating a database based on the column values
+A tool for exporting an excel to an sqlite database by dynamically creating table
 
-usage: cyber_cloud.py [-h] (-u URL | -f FILE) -o OUTPUT
+usage: excel2db.py [-h] -f INPUT_FOLDER -s INPUT_SHEET
 
 optional arguments:
-  -h, --help                    show this help message and exit
-  -u URL, --url URL             Give URL to obtain word cloud
-  -f FILE, --file FILE          Give URLs in a file
-  -o OUTPUT, --output OUTPUT    Give output file name
+  -h, --help            show this help message and exit
+  -f INPUT_FOLDER, --folder INPUT_FOLDER
+                        point to the folder containing the excel files
+  -s INPUT_SHEET, --sheet INPUT_SHEET
+                        Sheet name in Excel to be coverted to SQL tables
+
 
 
 Feel free to hit me up with suggestions.
