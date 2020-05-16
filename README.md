@@ -1,6 +1,6 @@
-# Cyber word cloud
+# Excel To Database
 
-A tool for generating word cloud from a list of input URLs or single URL in command.
+A tool for reading excel sheet and dynamically creating a database based on the column values
 
 usage: cyber_cloud.py [-h] (-u URL | -f FILE) -o OUTPUT
 
@@ -57,7 +57,7 @@ python cyber_cloud.py -u 'https://www.us-cert.gov/ncas/alerts/aa20-107a' -o cybe
 ```
 ##### Usage 2: To obtain word cloud from a list of  URLs:
 ```
-python cyber_cloud.py -f url_list.lst -o cyberwordcloud 
+python cyber_cloud.py -f url_list.lst -o cyberwordcloud
 ```
 
 ##### Usage 2: To get help:
@@ -68,7 +68,7 @@ python cyber_cloud.py -h
 
 ## Built With
 
-* [Python3](https://www.python.org/download/releases/3.0/) 
+* [Python3](https://www.python.org/download/releases/3.0/)
 
 
 ## Authors
