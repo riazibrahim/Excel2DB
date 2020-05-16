@@ -134,6 +134,8 @@ dmypy.json
 .pytype/
 
 ## Custom
+*.xlsx
+*.xls
 logs/
 *.db
 *.bkp*
