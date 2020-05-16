@@ -9,16 +9,18 @@ import sys
 parser = argparse.ArgumentParser(allow_abbrev=False, description='A tool for exporting an excel to an sqlite database by dynamically creating table')
 #TODO: Give default folder as "inputs"
 parser.add_argument('-f', '--folder',
-                    dest='folder_name',
+                    dest='input_folder',
                     type=str,
                     help='point to the folder containing the excel files',
                     required=False)
 
 parser.add_argument('-s', '--sheet',
-                    dest='sheet_name',
+                    dest='input_sheet',
                     type=str,
                     help='Sheet name in Excel to be coverted to SQL tables',
                     required=False)
+
+args = parser.parse_args()
 
 
 # Create directories
