@@ -10,7 +10,7 @@ def update_table_schema(excel_df, zone_name):
     logger.info('Updating table schema dictionary')
     table_schema_dict.update({'__tablename__': zone_name})
     for cols in excel_df.columns:
-        table_schema_dict.update({cols: Column(String)})
+        table_schema_dict.update({str(cols): Column(String)})
     return table_schema_dict
 
 
@@ -19,7 +19,7 @@ def import_excel_to_df(filename):
     df = 'test'
     try:
         logger.debug('Reading from excel {}'.format(filename))
-        df = pd.read_excel(filename, sheet_name=input_sheet)
+        df = pd.read_excel(filename, sheet_name=input_sheet, header=None)
         logger.debug('Dropping all empty rows from database')
         df = df.dropna()
         logger.debug('Setting header row as first non empty row')
