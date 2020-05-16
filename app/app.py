@@ -5,7 +5,7 @@ from app.models import create_table
 
 # Reading excel using pandas
 logger.info('Reading excel using pandas')
-file = '/home/soze/coding/26-reportdb/inputs/test.xlsx'
+file = '/home/soze/coding/26-reportdb/inputs/test2.xlsx'
 excel_df = import_excel_to_df(filename=file)
 logger.debug('Successfully imported to dataframe -> rows: {}, columns:{}'.format(len(excel_df), len(excel_df.columns)))
 logger.debug('Columns identified: {}'.format(excel_df.columns))
