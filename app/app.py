@@ -10,8 +10,5 @@ import pandas as pd
 logger.info('Reading excel using pandas')
 file = '/home/soze/coding/26-reportdb/inputs/test.xlsx'
 excel_df = import_excel_to_df(filename=file)
-header_row = 0
-excel_df.columns = excel_df.iloc[header_row]
-
-logger.debug('Successfully imported to dataframe -> rows: {}, columns:{}'.format(len(excel_df), len(excel_df.columns)))
-logger.debug('Columns identified: {}'.format(excel_df.columns))
+logger.info('Successfully imported to dataframe -> rows: {}, columns:{}'.format(len(excel_df), len(excel_df.columns)))
+logger.info('Columns identified: {}'.format(excel_df.columns))

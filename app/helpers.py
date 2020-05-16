@@ -16,7 +16,7 @@ def import_excel_to_df(filename):
         logger.debug('Reading from excel {}'.format(filename))
         df = pd.read_excel(filename, sheet_name=input_sheet)
         logger.debug('Dropping all empty rows from database')
-        df.dropna()
+        df = df.dropna()
         logger.debug('Setting header row as first non empty row')
         header_row=0
         df.columns = df.iloc[header_row]
