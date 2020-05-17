@@ -79,7 +79,7 @@ python excel2db.py -f inputs -s 'Sheet1'
 ```
 Rerun if there are multiple sheets, the database table will be updated as long as column headings are same.
 
-The output will be generated as reports.db in root folder. Go crazy with the database.
+The output will be generated as reports.db in 'outputs' folder. Go crazy with the database.
 
 ##### To get help:
 ```
