@@ -8,9 +8,9 @@ from config import Config
 
 
 def update_table_schema(excel_df, zone_name):
-    logger.info('Cleaning table schema dictionary...')
+    logger.debug('Cleaning table schema dictionary...')
     table_schema_dict.clear()
-    logger.info('Updating table schema dictionary')
+    logger.debug('Updating table schema dictionary')
     table_schema_dict.update({'__tablename__': zone_name})
     table_schema_dict.update({'id': Column(Integer, primary_key=True)})
     for cols in excel_df.columns:
@@ -43,18 +43,19 @@ def export_df_to_db(tablename, engine, dataframe):
 
 def select_table_name(file_name):
     # Check if rules dict is populated, else put table name as the file name itself
+    logger.info('Identifying table name...')
     if bool(Config.TABLE_NAMES_DICT):
-        logger.info('Table names dict is not empty. Proceeding to identify table name...')
+        logger.debug('Table names dict is not empty. Proceeding to identify table name...')
         value = [val for key, val in Config.TABLE_NAMES_DICT.items() if key in file_name]
         if len(value) == 0:
-            logger.info('Key not found')
+            logger.debug('Key not found')
             table_name = file_name
-            logger.info('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
+            logger.debug('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
         else:
             table_name = str(value).strip('[\'\']')
-            logger.info('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
+            logger.debug('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
     else:
         logger.info('Table name selection dict is empty')
         table_name = file_name
-        logger.info('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
+        logger.debug('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
     return table_name

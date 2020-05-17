@@ -13,13 +13,13 @@ for file in glob.iglob(os.path.join(input_folder, '*.xls*'), recursive=True):
     # Get only the base file name without the extension
     file_name = os.path.basename(file).split('.')[0]
     table_name = select_table_name(file_name)
+    logger.info('Chosen table "{}"'.format(table_name))
     # TODO: Handle promotion step and application column difference
     # Read excel using pandas
-    logger.info('Reading excel using pandas')
+    logger.debug('Reading excel using pandas')
     excel_df = import_excel_to_df(filename=file)
     logger.debug('Successfully imported to dataframe -> rows: {}, columns:{}'.format(len(excel_df), len(excel_df.columns)))
     logger.debug('Columns identified: {}'.format(excel_df.columns))
-    logger.info('File name is : {} and will be used as table name'.format(table_name))
     # Update database table schema #TODO: do a check, if table exists, before doing this
     logger.debug('Moving on to create database table from dataframe headers...')
     update_table_schema(excel_df=excel_df, zone_name=str(table_name))  # TODO: change to zone name
