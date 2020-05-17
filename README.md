@@ -27,13 +27,12 @@ git clone git@github.com:riazibrahim/Excel2DB.git
 or
 
 git clone https://github.com/riazibrahim/Excel2DB.git
-
 ```
 
 Change to the source code folder
 
 ```
-cd cyber_cloud
+cd Excel2DB
 ```
 Start a new virtual environment
 
@@ -46,31 +45,41 @@ source venv/bin/activate
 Install all the requirements
 
 ```
-pip install -r requirements.txt
+pip install -r requirements.pip
 ```
 
-Update the stopwords.lst file that exclude words from the word cloud (if required)
+Put all the excel files in an 'inputs' folder (or any name, however, change name in subsequent commands)
+
+(Optional) Configure the table name based on patterns in input excel file names in config.py (Default: Table name is file name without extension)
 
 ```
-nano stopwords.lst
-```
+nano config.py
 
+
+TABLE_NAMES_DICT = {
+        'Preferred_table_name': 'substring in filename',
+        'Table_1': 'MAZ',
+        'Table_1': 'SAZ',
+        'Table_2': 'APAC',
+    }
+
+In the above example, all data in excel files containing 'MAZ' or 'SAZ' in its filename will be dumped to same table 'Table 1'. Warning: Ensure column headings are same for files mapped to same table name.
+```
 
 ## Running the tool
 
+This will go through all excel files in and export data in Sheet1 to database.
 
-##### Usage 1: To obtain word cloud from a single URL:
 ```
-python cyber_cloud.py -u 'https://www.us-cert.gov/ncas/alerts/aa20-107a' -o cyberwordcloud
+python excel2db.py -f inputs -s 'Sheet1'
 ```
-##### Usage 2: To obtain word cloud from a list of  URLs:
-```
-python cyber_cloud.py -f url_list.lst -o cyberwordcloud
-```
+Rerun if there are multiple sheets, the database table will be updated as long as column headings are same.
 
-##### Usage 2: To get help:
+The output will be generated as reports.db in root folder. Go crazy with the database.
+
+##### To get help:
 ```
-python cyber_cloud.py -h
+python excel2db.py -h
 ```
 
 
