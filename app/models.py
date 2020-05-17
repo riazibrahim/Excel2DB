@@ -16,6 +16,7 @@ def create_table(table_schema_dict):
         Base.metadata.create_all(engine)
         logger.debug('Cleaning table schema dictionary...')
         table_schema_dict.clear()
+        return True
     except Exception as ex:
         logger.warning('Fatal Error! {}'.format(ex))
-        sys.exit('Bye!')
+        return False

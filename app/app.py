@@ -18,6 +18,9 @@ for file in glob.iglob(os.path.join(input_folder, '*.xls*'), recursive=True):
     # Read excel using pandas
     logger.debug('Reading excel using pandas')
     excel_df = import_excel_to_df(filename=file)
+    if excel_df is False:
+        logger.warning('Check logs for error. Skipping current file ...')
+        continue
     logger.debug('Successfully imported to dataframe -> rows: {}, columns:{}'.format(len(excel_df), len(excel_df.columns)))
     logger.debug('Columns identified: {}'.format(excel_df.columns))
     # Update database table schema #TODO: do a check, if table exists, before doing this
@@ -28,10 +31,13 @@ for file in glob.iglob(os.path.join(input_folder, '*.xls*'), recursive=True):
     # Create database table in database
     logger.debug('Updated table schema \n{}'.format(table_schema_dict))
     logger.debug('Creating table based on the new schema')
-    create_table(table_schema_dict)
-
+    if not create_table(table_schema_dict):
+        logger.warning('Check logs for error. Skipping current file ...')
+        continue
     # Dump excel data into the database table
     logger.info('Updating database table with the contents')
-    export_df_to_db(engine=engine, dataframe=excel_df, tablename=str(table_name))
+    if not export_df_to_db(engine=engine, dataframe=excel_df, tablename=str(table_name)):
+        logger.warning('Check logs for error. Skipping current file ...')
+        continue
     logger.info('Successfully updated database table with the contents')
 

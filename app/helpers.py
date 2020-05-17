@@ -35,7 +35,7 @@ def import_excel_to_df(filename):
             df.columns = new_header  # set the header row as the df header
     except Exception as ex:
         logger.warning('Couldn\'t read file {}\n Error is : {}'.format(filename, ex))
-        sys.exit('Fatal Error! Exiting!')  # TODO move return
+        return False
     logger.debug('Resulting dataframe \n{}'.format(df))
     return df
 
@@ -43,8 +43,10 @@ def import_excel_to_df(filename):
 def export_df_to_db(tablename, engine, dataframe):
     try:
         dataframe.to_sql(name=tablename, con=engine, if_exists='append', index=False)
+        return True
     except Exception as ex:
-        sys.exit('Fatal Error! \n {}'.format(ex))
+        logger.warning('Fatal Error! \n {}'.format(ex))
+        return False
 
 
 def select_table_name(file_name):
