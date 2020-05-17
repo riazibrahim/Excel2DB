@@ -15,6 +15,7 @@ def update_table_schema(excel_df, zone_name):
     table_schema_dict.update({'id': Column(Integer, primary_key=True)})
     for cols in excel_df.columns:
         table_schema_dict.update({str(cols): Column(String)})
+    logger.debug('Final table schema is \n{}'.format(table_schema_dict))
     return table_schema_dict
 
 
@@ -22,15 +23,19 @@ def update_table_schema(excel_df, zone_name):
 def import_excel_to_df(filename):
     try:
         logger.debug('Reading from excel {}'.format(filename))
-        df = pd.read_excel(filename, sheet_name=input_sheet, header=None)
-        logger.debug('Dropping all empty rows from database')
-        df = df.dropna()
-        logger.debug('Setting header row as first non empty row')
-        header_row = 0
-        df.columns = df.iloc[header_row]
+        df = pd.read_excel(filename, sheet_name=input_sheet, header=0)
+        logger.debug('Dataframe columns names for "{}" is \n{}'.format(filename, df.columns))
+        if any("Unnamed" in headings for headings in df.columns):
+            logger.debug('Dataframe contains blank rows for contents from file "{}": \n{}'.format(filename, df))
+            logger.debug('Dropping all empty rows from database')
+            df = df.dropna()
+            logger.debug('Setting header row as first non empty row')
+            header_row = 0
+            df.columns = df.iloc[header_row]
     except Exception as ex:
         logger.warning('Couldn\'t read file {}\n Error is : {}'.format(filename, ex))
-        sys.exit('Fatal Error! Exiting!')
+        sys.exit('Fatal Error! Exiting!') #TODO move return
+    logger.debug('Resulting dataframe \n{}'.format(df))
     return df
 
 
