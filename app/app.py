@@ -10,17 +10,17 @@ logger.info('Selecting input files')
 for file in glob.iglob(os.path.join(input_folder, '*.xls*'), recursive=True):
     print('\n')
     logger.info('++++++++++++++++++++++++++++++++++\nChoosing file: {}'.format(file))
-    zone_name = os.path.basename(file).split('.')[0]
+    table_name = os.path.basename(file).split('.')[0]
     # TODO: Handle promotion step and application column difference
     # Read excel using pandas
     logger.info('Reading excel using pandas')
     excel_df = import_excel_to_df(filename=file)
     logger.debug('Successfully imported to dataframe -> rows: {}, columns:{}'.format(len(excel_df), len(excel_df.columns)))
     logger.debug('Columns identified: {}'.format(excel_df.columns))
-    logger.info('File name is : {} and will be used as table name'.format(zone_name))
+    logger.info('File name is : {} and will be used as table name'.format(table_name))
     # Update database table schema #TODO: do a check, if table exists, before doing this
     logger.debug('Moving on to create database table from dataframe headers...')
-    update_table_schema(excel_df=excel_df, zone_name=str(zone_name))  # TODO: change to zone name
+    update_table_schema(excel_df=excel_df, zone_name=str(table_name))  # TODO: change to zone name
     logger.debug('Created table from the dataframe headers')
 
     # Create database table in database
@@ -30,6 +30,6 @@ for file in glob.iglob(os.path.join(input_folder, '*.xls*'), recursive=True):
 
     # Dump excel data into the database table
     logger.info('Updating database table with the contents')
-    export_df_to_db(engine=engine, dataframe=excel_df, tablename=str(zone_name))
+    export_df_to_db(engine=engine, dataframe=excel_df, tablename=str(table_name))
     logger.info('Successfully updated database table with the contents')
 
