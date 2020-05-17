@@ -16,7 +16,6 @@ def update_table_schema(excel_df, zone_name):
 
 # Use pandas to load an excel into dataframe
 def import_excel_to_df(filename):
-    df = 'test'
     try:
         logger.debug('Reading from excel {}'.format(filename))
         df = pd.read_excel(filename, sheet_name=input_sheet, header=None)
