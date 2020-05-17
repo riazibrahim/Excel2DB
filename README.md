@@ -6,10 +6,13 @@ usage: excel2db.py [-h] -f INPUT_FOLDER -s INPUT_SHEET
 
 optional arguments:
   -h, --help            show this help message and exit
+
   -f INPUT_FOLDER, --folder INPUT_FOLDER
                         point to the folder containing the excel files
+
   -s INPUT_SHEET, --sheet INPUT_SHEET
                         Sheet name in Excel to be coverted to SQL tables
+                        
 
 
 
