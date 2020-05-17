@@ -68,7 +68,7 @@ In the above example, all data in excel files containing 'MAZ' or 'SAZ' in its f
 
 ## Running the tool
 
-This will go through all excel files in and export data in Sheet1 to database.
+The below will go through all excel files in inputs (sub)folder and export data in 'Sheet1' to database with same column headings.
 
 ```
 python excel2db.py -f inputs -s 'Sheet1'
