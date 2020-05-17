@@ -1,6 +1,6 @@
 # Excel To Database
 
-A tool for exporting an excel to an sqlite database by dynamically creating table
+A tool for exporting any excel table to an sqlite database by dynamically creating table based on column headers
 
 usage: excel2db.py [-h] -f INPUT_FOLDER -s INPUT_SHEET
 
@@ -13,6 +13,7 @@ optional arguments:
 
 
 
+
 Feel free to hit me up with suggestions.
 
 
@@ -21,7 +22,12 @@ Feel free to hit me up with suggestions.
 Download the latest version from Git Repo
 
 ```
-git clone git@github.com:riazibrahim/cyber_cloud.git
+git clone git@github.com:riazibrahim/Excel2DB.git
+
+or
+
+git clone https://github.com/riazibrahim/Excel2DB.git
+
 ```
 
 Change to the source code folder

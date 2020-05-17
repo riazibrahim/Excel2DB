@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 
 # Configuring argument options
 parser = argparse.ArgumentParser(allow_abbrev=False,
-                                 description='A tool for exporting an excel to an sqlite database by dynamically creating table')
+                                 description='A tool for exporting any excel table to an sqlite database by dynamically creating table based on column headers')
 # TODO: Give default folder as "inputs"
 parser.add_argument('-f', '--folder',
                     dest='input_folder',

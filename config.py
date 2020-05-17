@@ -25,7 +25,7 @@ class Config:
         'APAC': 'APAC',
         'EUR': 'EUR',
         'AFR': 'AFR',
-        'GHQ': 'GHQ',
+        'GLOBAL': 'GHQ',
     }
 
     # Multiprocessing #TODO
