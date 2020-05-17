@@ -14,6 +14,8 @@ def create_table(table_schema_dict):
         SampleTableClass = type('SampleTableClass', (Base,), table_schema_dict)
         logger.info('Generating all tables')
         Base.metadata.create_all(engine)
+        logger.info('Cleaning table schema dictionary...')
+        table_schema_dict.clear()
     except Exception as ex:
         logger.warning('Fatal Error! {}'.format(ex))
         sys.exit('Bye!')

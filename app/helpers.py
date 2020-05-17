@@ -3,12 +3,15 @@ from app.globalvars import table_schema_dict
 import pandas as pd
 import sys
 from app.globalvars import input_sheet
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Integer
 
 
 def update_table_schema(excel_df, zone_name):
+    logger.info('Cleaning table schema dictionary...')
+    table_schema_dict.clear()
     logger.info('Updating table schema dictionary')
     table_schema_dict.update({'__tablename__': zone_name})
+    table_schema_dict.update({'id': Column(Integer, primary_key=True)})
     for cols in excel_df.columns:
         table_schema_dict.update({str(cols): Column(String)})
     return table_schema_dict
