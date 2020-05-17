@@ -3,15 +3,33 @@ from app.helpers import import_excel_to_df, update_table_schema, export_df_to_db
 from app.globalvars import table_schema_dict, input_folder
 from app.models import create_table
 import glob
-import sys
+from config import Config
 import os
 
 logger.info('Selecting input files')
 for file in glob.iglob(os.path.join(input_folder, '*.xls*'), recursive=True):
     print('\n')
     logger.info('++++++++++++++++++++++++++++++++++\nChoosing file: {}'.format(file))
-    # table_name = os.path.basename(file).split('.')[0]
-    search_string = os.path.basename(file).split('.')[0]
+    # Get only the base file name without the extension
+    file_name = os.path.basename(file).split('.')[0]
+    value = None
+    # Check if rules dict is populated, else put table name as the file name itself
+    if bool(Config.TABLE_NAMES_DICT):
+        logger.info('Table names dict is not empty. Proceeding to identify table name...')
+        value = [val for key, val in Config.TABLE_NAMES_DICT.items() if key in file_name]
+        if len(value) == 0:
+            logger.info('Key not found')
+            table_name = file_name
+            logger.info('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
+        else:
+            table_name = str(value).strip('[\'\']')
+            logger.info('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
+    else:
+        logger.info('Table name selection dict is empty')
+        table_name = file_name
+        logger.info('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
+
+    continue
     # TODO: Handle promotion step and application column difference
     # Read excel using pandas
     logger.info('Reading excel using pandas')

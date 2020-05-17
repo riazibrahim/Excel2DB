@@ -16,6 +16,8 @@ class Config:
     LOG_FILENAME = 'excel2db.log'
 
     # Table name selection dictionary 'Key' corresponds to string to match in filename, 'Value' corresponds to table name chosen
+    # TABLE_NAMES_DICT = {}
+
     TABLE_NAMES_DICT = {
         'NAZ': 'NAZ',
         'MAZ': 'MAZ',
