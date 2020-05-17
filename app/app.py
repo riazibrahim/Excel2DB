@@ -10,7 +10,8 @@ logger.info('Selecting input files')
 for file in glob.iglob(os.path.join(input_folder, '*.xls*'), recursive=True):
     print('\n')
     logger.info('++++++++++++++++++++++++++++++++++\nChoosing file: {}'.format(file))
-    table_name = os.path.basename(file).split('.')[0]
+    # table_name = os.path.basename(file).split('.')[0]
+    search_string = os.path.basename(file).split('.')[0]
     # TODO: Handle promotion step and application column difference
     # Read excel using pandas
     logger.info('Reading excel using pandas')
