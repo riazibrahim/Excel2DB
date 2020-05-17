@@ -1,6 +1,6 @@
 # Excel To Database
 
-A tool for exporting any excel table to an sqlite database by dynamically creating table based on column headers
+A tool for exporting any excel table to an sqlite database.
 
 usage: excel2db.py [-h] -f INPUT_FOLDER -s INPUT_SHEET
 
