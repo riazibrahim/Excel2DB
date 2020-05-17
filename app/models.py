@@ -6,9 +6,9 @@ import sys
 # Create table from db_schema dict
 def create_table(table_schema_dict):
     try:
-        logger.info('Entered ::: create_table')
-        logger.info('table schema passed is \n{}'.format(table_schema_dict))
-        logger.info('Initializing Base')
+        logger.debug('Entered ::: create_table')
+        logger.debug('table schema passed is \n{}'.format(table_schema_dict))
+        logger.debug('Initializing Base')
         Base = declarative_base()
         logger.info('Dynamically generating Table Class')
         SampleTableClass = type('SampleTableClass', (Base,), table_schema_dict)
