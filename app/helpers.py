@@ -4,6 +4,7 @@ import pandas as pd
 import sys
 from app.globalvars import input_sheet
 from sqlalchemy import Column, String, Integer
+from config import Config
 
 
 def update_table_schema(excel_df, zone_name):
@@ -38,3 +39,22 @@ def export_df_to_db(tablename, engine, dataframe):
         dataframe.to_sql(name=tablename, con=engine, if_exists='append', index=False)
     except Exception as ex:
         sys.exit('Fatal Error! \n {}'.format(ex))
+
+
+def select_table_name(file_name):
+    # Check if rules dict is populated, else put table name as the file name itself
+    if bool(Config.TABLE_NAMES_DICT):
+        logger.info('Table names dict is not empty. Proceeding to identify table name...')
+        value = [val for key, val in Config.TABLE_NAMES_DICT.items() if key in file_name]
+        if len(value) == 0:
+            logger.info('Key not found')
+            table_name = file_name
+            logger.info('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
+        else:
+            table_name = str(value).strip('[\'\']')
+            logger.info('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
+    else:
+        logger.info('Table name selection dict is empty')
+        table_name = file_name
+        logger.info('Chosen table_name is "{}" for file "{}" '.format(table_name, file_name))
+    return table_name
