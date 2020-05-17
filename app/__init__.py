@@ -12,14 +12,14 @@ parser = argparse.ArgumentParser(allow_abbrev=False,
 parser.add_argument('-f', '--folder',
                     dest='input_folder',
                     type=str,
-                    help='point to the folder containing the excel files',
+                    help='The folder containing the excel files',
                     required=True)
 
 # TODO: Default Sheet as sheet 1
 parser.add_argument('-s', '--sheet',
                     dest='input_sheet',
                     type=str,
-                    help='Sheet name in Excel to be coverted to SQL tables',
+                    help='name of the sheet in the Excel workbook to be exported into SQL tables',
                     required=True)
 
 args = parser.parse_args()

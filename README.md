@@ -5,6 +5,7 @@ A tool for exporting any excel table to an sqlite database by dynamically creati
 usage: excel2db.py [-h] -f INPUT_FOLDER -s INPUT_SHEET
 
 optional arguments:
+
   -h, --help            show this help message and exit
 
   -f INPUT_FOLDER, --folder INPUT_FOLDER
@@ -12,7 +13,7 @@ optional arguments:
 
   -s INPUT_SHEET, --sheet INPUT_SHEET
                         Sheet name in Excel to be coverted to SQL tables
-                        
+
 
 
 
