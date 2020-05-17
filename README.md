@@ -67,7 +67,9 @@ TABLE_NAMES_DICT = {
         'Table_2': 'APAC',
     }
 
-In the above example, all data in excel files containing 'MAZ' or 'SAZ' in its filename will be dumped to same table 'Table 1'. Warning: Ensure column headings are same for files mapped to same table name.
+In the above example, all data in excel files containing 'MAZ' or 'SAZ' in its filename will be dumped to same table 'Table 1'. Data from APAC will be saved in Table_2.
+
+Warning: Ensure column headings are same for files mapped to same table name.
 ```
 
 ## Running the tool
