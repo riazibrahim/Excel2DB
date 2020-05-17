@@ -30,11 +30,12 @@ def import_excel_to_df(filename):
             logger.debug('Dropping all empty rows from database')
             df = df.dropna()
             logger.debug('Setting header row as first non empty row')
-            header_row = 0
-            df.columns = df.iloc[header_row]
+            new_header = df.iloc[0]  # grab the first row for the header
+            df = df[1:]  # take the data less the header row
+            df.columns = new_header  # set the header row as the df header
     except Exception as ex:
         logger.warning('Couldn\'t read file {}\n Error is : {}'.format(filename, ex))
-        sys.exit('Fatal Error! Exiting!') #TODO move return
+        sys.exit('Fatal Error! Exiting!')  # TODO move return
     logger.debug('Resulting dataframe \n{}'.format(df))
     return df
 
