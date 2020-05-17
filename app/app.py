@@ -22,7 +22,7 @@ for file in glob.iglob(os.path.join(input_folder, '*.xls*'), recursive=True):
     logger.debug('Columns identified: {}'.format(excel_df.columns))
     # Update database table schema #TODO: do a check, if table exists, before doing this
     logger.debug('Moving on to create database table from dataframe headers...')
-    update_table_schema(excel_df=excel_df, zone_name=str(table_name))  # TODO: change to zone name
+    update_table_schema(excel_df=excel_df, table_name=str(table_name))  # TODO: change to zone name
     logger.debug('Created table from the dataframe headers')
 
     # Create database table in database

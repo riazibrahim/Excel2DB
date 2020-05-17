@@ -7,11 +7,11 @@ from sqlalchemy import Column, String, Integer
 from config import Config
 
 
-def update_table_schema(excel_df, zone_name):
+def update_table_schema(excel_df, table_name):
     logger.debug('Cleaning table schema dictionary...')
     table_schema_dict.clear()
     logger.debug('Updating table schema dictionary')
-    table_schema_dict.update({'__tablename__': zone_name})
+    table_schema_dict.update({'__tablename__': table_name})
     table_schema_dict.update({'id': Column(Integer, primary_key=True)})
     for cols in excel_df.columns:
         table_schema_dict.update({str(cols): Column(String)})
