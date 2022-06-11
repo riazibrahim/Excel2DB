@@ -1,7 +1,7 @@
 from app import logger
 from app.globalvars import table_schema_dict
 import pandas as pd
-import sys
+from pathlib import Path
 from app.globalvars import input_sheet
 from sqlalchemy import Column, String, Integer
 from config import Config
@@ -33,6 +33,7 @@ def import_excel_to_df(filename):
             new_header = df.iloc[0]  # grab the first row for the header
             df = df[1:]  # take the data less the header row
             df.columns = new_header  # set the header row as the df header
+        df['ReportName'] = Path(filename).stem
     except Exception as ex:
         logger.warning('Couldn\'t read file {}\n Error is : {}'.format(filename, ex))
         return False
